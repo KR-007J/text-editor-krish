@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krish Text Editor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #9b59b6, #8e44ad);
+      color: white;
+    }
+    header {
+      background-color: #6c3483;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+    .editor-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    textarea {
+      width: 80%;
+      height: 300px;
+      border: none;
+      border-radius: 12px;
+      padding: 1rem;
+      font-size: 1.1rem;
+      resize: none;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    .buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    button {
+      background-color: #d980fa;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #be4bdb;
+    }
+  </style>
+</head>
+<body>
+  <header>Krish Text Editor</header>
+  <div class="editor-container">
+    <textarea id="textInput" placeholder="Start typing..."></textarea>
+    <div class="buttons">
+      <button onclick="saveText()">Save</button>
+      <button onclick="loadText()">Load</button>
+      <button onclick="updateText()">Update</button>
+      <button onclick="deleteText()">Delete</button>
+      <button onclick="clearText()">Clear</button>
+    </div>
+  </div>
+  <script>
+    function saveText() {
+      const text = document.getElementById('textInput').value;
+      localStorage.setItem('textEditorData', text);
+      alert('Text saved!');
+    }
+
+    function loadText() {
+      const text = localStorage.getItem('textEditorData');
+      document.getElementById('textInput').value = text || '';
+    }
+
+    function updateText() {
+      const text = document.getElementById('textInput').value;
+      localStorage.setItem('textEditorData', text);
+      alert('Text updated!');
+    }
+
+    function deleteText() {
+      localStorage.removeItem('textEditorData');
+      document.getElementById('textInput').value = '';
+      alert('Text deleted!');
+    }
+
+    function clearText() {
+      document.getElementById('textInput').value = '';
+    }
+  </script>
+</body>
+</html>
